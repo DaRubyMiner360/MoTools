@@ -18,7 +18,7 @@ namespace MoTools.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 74;
+			item.damage = 574;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 20;
@@ -39,12 +39,14 @@ namespace MoTools.Items.Weapons
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 20);
-			recipe.AddIngredient(ItemID.CobaltBar, 10);
-			recipe.AddIngredient(ItemID.MythrilBar, 1);
-			recipe.AddIngredient(ItemID.WormholePotion, 1);
-			recipe.AddIngredient(mod, "The404Essence", 20);
+			recipe.AddIngredient(ItemID.HallowedBar, 30);
+			recipe.AddIngredient(ItemID.CobaltBar, 30);
+			recipe.AddIngredient(ItemID.MythrilBar, 30);
+			recipe.AddIngredient(ItemID.LunarBar, 30);
+			recipe.AddIngredient(mod, "The404Essence", 30);
+			recipe.AddIngredient(mod, "The404Ore", 30);
 			recipe.AddTile(mod, "ExtremeForge");
+			recipe.AddTile(mod, "The404Forge");
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

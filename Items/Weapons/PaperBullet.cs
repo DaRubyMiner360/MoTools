@@ -29,11 +29,11 @@ namespace MoTools.Items.Weapons
 		}
 
 		// Give each bullet consumed a 20% chance of granting the Wrath buff for 5 seconds
-		public override void OnConsumeAmmo(Player player) {
+		/*public override void OnConsumeAmmo(Player player) {
 			if (Main.rand.NextBool(5)) {
 				player.AddBuff(BuffID.Archery, 300);
 			}
-		}
+		}*/
 
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);

@@ -9,12 +9,12 @@ namespace MoTools.Items.Weapons
 	public class The404Arrow : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("404 Arrow 2.0");     //The English name of the projectile
+			DisplayName.SetDefault("404 Arrow");     //The English name of the projectile
 			Tooltip.SetDefault("The arrow that was infused with Error 404.");
 		}
 
 		public override void SetDefaults() {
-			item.damage = 25;
+			item.damage = 574;
 			item.ranged = true;
 			item.width = 8;
 			item.height = 8;
@@ -40,9 +40,12 @@ namespace MoTools.Items.Weapons
 			recipe.AddIngredient(ItemID.WoodenArrow, 1);
 			recipe.AddIngredient(ItemID.UnholyArrow, 1);
 			recipe.AddIngredient(ItemID.JestersArrow, 1);
+			recipe.AddIngredient(ItemID.LunarBar, 1);
 			recipe.AddIngredient(mod, "The404Essence", 2);
+			recipe.AddIngredient(mod, "The404Ore", 2);
 			recipe.AddTile(mod, "ExtremeForge");
-			recipe.SetResult(this, 10);
+			recipe.AddTile(mod, "The404Forge");
+			recipe.SetResult(this, 30);
 			recipe.AddRecipe();
 		}
 	}

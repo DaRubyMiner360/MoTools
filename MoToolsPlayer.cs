@@ -12,6 +12,7 @@ using MoTools.Items;
 using MoTools.Items.Placeable.MusicBoxes;
 using MoTools.Tiles.MusicBoxes;
 using MoTools.Projectiles.Accessories;
+using MoTools.Projectiles;
 using Terraria.Graphics.Shaders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;
+using Terraria.DataStructures;
 
 namespace MoTools
 {
@@ -38,6 +40,12 @@ namespace MoTools
         public bool cured404Curse;
         public bool immuneTo404Curse;
 
+        public int constantDamage;
+        public float percentDamage;
+
+        public const int maxLifeFruits = 10;
+        public int lifeFruits;
+
         public bool Blaze { get; set; } = false;
 
         public bool FireTrail { get; set; } = false;
@@ -52,9 +60,22 @@ namespace MoTools
             Error666Wings = false;
             SecretRecipe = false;
 
+            constantDamage = 0;
+            percentDamage = 0f;
+
             Blaze = false;
 
             FireTrail = false;
+
+            player.statLifeMax2 += lifeFruits * 10;
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            ModPacket packet = mod.GetPacket();
+            packet.Write((byte)player.whoAmI);
+            packet.Write(lifeFruits);
+            packet.Send(toWho, fromWho);
         }
 
         public static MoToolsPlayer Get() => Get(Main.LocalPlayer);
@@ -190,6 +211,38 @@ namespace MoTools
 
                 SecretRecipe = false;
             }
+        }
+
+        public override TagCompound Save()
+        {
+            // Read https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound to better understand Saving and Loading data.
+            return new TagCompound {
+				// {"somethingelse", somethingelse}, // To save more data, add additional lines
+                {"lifeFruits", lifeFruits},
+            };
+            //note that C# 6.0 supports indexer initializers
+            //return new TagCompound {
+            //	["score"] = score
+            //};
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            lifeFruits = tag.GetInt("lifeFruits");
+        }
+
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
+            ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (constantDamage > 0 || percentDamage > 0f)
+            {
+                int damageFromPercent = (int)(player.statLifeMax2 * percentDamage);
+                damage = Math.Max(constantDamage, damageFromPercent);
+                customDamage = true;
+            }
+            constantDamage = 0;
+            percentDamage = 0f;
+            return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
         }
 
         #region Buffs

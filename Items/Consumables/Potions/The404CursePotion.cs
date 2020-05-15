@@ -33,12 +33,13 @@ namespace MoTools.Items.Consumables.Potions
                 player.GetModPlayer<MoToolsPlayer>().had404Curse = true;
                 Main.NewText("You have had the 404 Curse", 200, 0, 0);
                 player.AddBuff(ModContent.BuffType<The404Curse>(), 5 * 60 * 60, true);
+                return true;
             }
             else
             {
                 Main.NewText("You are immune to the 404 Curse", 200, 0, 0);
+                return false;
             }
-            return true;
         }
 
         public override void AddRecipes()

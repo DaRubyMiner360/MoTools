@@ -21,7 +21,11 @@ namespace MoTools
         public static bool downedAnnihilator = false;
         public static bool downedPaperCut = false;
         public static bool downedThe404KingSlime = false;
+        public static bool downedThe404EoC = false;
+        public static bool downedThe404EoW = false;
+        public static bool downedTheCelestial = false;
         public static bool spawned404Crystals = false;
+        public static bool hardMode = false;
         public static int power = 0;
         public static bool obEnf = false; //steamEnfused
         public static bool bysmal = false;
@@ -40,7 +44,11 @@ namespace MoTools
             downedAnnihilator = false;
             downedPaperCut = false;
             downedThe404KingSlime = false;
+            downedThe404EoC = false;
+            downedThe404EoW = false;
+            downedTheCelestial = false;
             spawned404Crystals = false;
+            hardMode = false;
             zawarudo = 0;
             obEnf = false;
             bysmal = false;
@@ -66,6 +74,9 @@ namespace MoTools
             if (downedAnnihilator) downed.Add("annihilator");
             if (downedPaperCut) downed.Add("paperCut");
             if (downedThe404KingSlime) downed.Add("the404KingSlime");
+            if (downedThe404EoC) downed.Add("the404EoC");
+            if (downedThe404EoW) downed.Add("the404EoW");
+            if (downedTheCelestial) downed.Add("theCelestial");
             if (obEnf) obs = true;
             pwr = power;
 
@@ -82,6 +93,9 @@ namespace MoTools
             downedAnnihilator = downed.Contains("annihilator");
             downedPaperCut = downed.Contains("paperCut");
             downedThe404KingSlime = downed.Contains("the404KingSlime");
+            downedThe404EoC = downed.Contains("the404EoC");
+            downedThe404EoW = downed.Contains("the404EoW");
+            downedTheCelestial = downed.Contains("theCelestial");
             obEnf = tag.GetBool("steam");
             bysmal = tag.GetBool("bysmal");
             power = tag.GetInt("power");
@@ -96,6 +110,9 @@ namespace MoTools
                 downedAnnihilator = flags[0];
                 downedPaperCut = flags[1];
                 downedThe404KingSlime = flags[2];
+                downedThe404EoC = flags[3];
+                downedThe404EoW = flags[4];
+                downedTheCelestial = flags[5];
 
                 BitsByte flags2 = reader.ReadByte();
                 obEnf = flags2[4];
@@ -113,6 +130,9 @@ namespace MoTools
             flags[0] = downedAnnihilator;
             flags[1] = downedPaperCut;
             flags[2] = downedThe404KingSlime;
+            flags[3] = downedThe404EoC;
+            flags[4] = downedThe404EoW;
+            flags[5] = downedTheCelestial;
 
         }
 
@@ -121,6 +141,10 @@ namespace MoTools
             BitsByte flags = reader.ReadByte();
             downedAnnihilator = flags[0];
             downedPaperCut = flags[1];
+            downedThe404KingSlime = flags[2];
+            downedThe404EoC = flags[3];
+            downedThe404EoW = flags[4];
+            downedTheCelestial = flags[5];
 
         }
 
@@ -185,7 +209,7 @@ namespace MoTools
             }
         }
 
-        public override void PostWorldGen()
+        /*public override void PostWorldGen()
         {
             // This is simply generating a line of Chlorophyte halfway down the world.
             for (int i = -1; i < Main.maxTilesX; i++)
@@ -196,7 +220,7 @@ namespace MoTools
             {
                 Main.tile[i, Main.maxTilesY / 2].type = TileID.Crimstone;
             }
-        }
+        }*/
 
         public static int GetCurseCount()
         {

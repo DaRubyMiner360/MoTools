@@ -44,9 +44,9 @@ Currently There Is
    -Reinforced Paper Armor
    -404 Crystals(Ore)
    -Error 666 Wings(Dev Item(Wings)
+   -404 Sword(Sword(Melee))
 
 Adding In The Future
-   -404 Sword(Sword(Melee))
    -Nebula Staff(Mage Weapon)
    -Sun Staff(Summoner)
    -Wormhole Wand(Similar to the Portal Gun)

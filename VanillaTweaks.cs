@@ -30,7 +30,7 @@ namespace MoTools
                     if (tile.active() && tile.type == TileID.Hellstone/* || tile.type == TileID.Ash*/)
                     {
                         //WorldGen.OreRunner(X, Y, 5/*idk*/, 5/*idk*/, mod.TileType("The404Ore"));//Sadly I found nowhere to put WorldGen.genRand.Next(5, 9)
-                        WorldGen.TileRunner(X, Y, (double)WorldGen.genRand.Next(100, 100), WorldGen.genRand.Next(100, 100), mod.TileType("The404Ore"), false, 0f, 0f, false, true);
+                        WorldGen.TileRunner(X, Y, (double)WorldGen.genRand.Next(20, 20), WorldGen.genRand.Next(20, 20), mod.TileType("The404Ore"), false, 0f, 0f, false, true);
                         //WorldGen.OreRunner(X, Y, WorldGen.genRand.Next(2, 4), WorldGen.genRand.Next(3, 5), (ushort)mod.TileType("The404Ore"));//Sadly I found nowhere to put WorldGen.genRand.Next(5, 9)
                     }
                 }
@@ -49,12 +49,21 @@ namespace MoTools
             {
                 Main.NewText("Get prepared for the 404 Curse!!", 200, 0, 0);
             }
-            if (Main.hardMode && npc.type == NPCID.WallofFlesh)
+            if (!MoToolsWorld.hardMode && npc.type == NPCID.WallofFlesh)
             {
+                for (int i = -1; i < Main.maxTilesX; i++)
+                {
+                    Main.tile[i, Main.maxTilesY / 2].type = TileID.Ebonstone;
+                }
                 for (int i = 0; i < Main.maxTilesX; i++)
                 {
                     Main.tile[i, Main.maxTilesY / 2].type = TileID.Pearlstone;
                 }
+                for (int i = 1; i < Main.maxTilesX; i++)
+                {
+                    Main.tile[i, Main.maxTilesY / 2].type = TileID.Crimstone;
+                }
+                MoToolsWorld.hardMode = true;
             }
             // Addtional if statements here if you would like to add drops to other vanilla npc.
         }

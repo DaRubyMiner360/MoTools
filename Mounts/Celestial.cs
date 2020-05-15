@@ -19,13 +19,17 @@ namespace MoTools.Mounts
             mountData.runSpeed = 5f;
             mountData.dashSpeed = 4f;
             mountData.flightTimeMax = 999999999;
-            mountData.fatigueMax = 0;
-            mountData.jumpHeight = 3;
+            //mountData.fatigueMax = 0;
+            mountData.fatigueMax = 999999999;
+            //mountData.jumpHeight = 3;
+            mountData.jumpHeight = 10;
             mountData.acceleration = 0.095f;
             mountData.jumpSpeed = 8f;
             mountData.blockExtraJumps = true;
             mountData.totalFrames = 4;
-            mountData.constantJump = true;
+            //mountData.constantJump = true;
+            mountData.usesHover = true;
+            mountData.blockExtraJumps = true;
             int[] array = new int[mountData.totalFrames];
             for (int l = 0; l < array.Length; l++)
             {

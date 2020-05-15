@@ -1,6 +1,6 @@
 displayName = Mo' Tools
 author = DaRubyMiner360
-version = 1.3.2.8
+version = 1.3.2.9
 hideCode = false
 hideResources = false
 includeSource = true

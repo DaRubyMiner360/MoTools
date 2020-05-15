@@ -35,19 +35,21 @@ namespace MoTools.Items.Consumables.Potions
                     player.GetModPlayer<MoToolsPlayer>().immuneTo404Curse = true;
                     Main.NewText("You are immune to the 404 Curse", 200, 0, 0);
                     player.DelBuff(ModContent.BuffType<The404Curse>());
+                    return true;
                 }
                 else
                 {
                     player.GetModPlayer<MoToolsPlayer>().cured404Curse = true;
                     Main.NewText("You have cured the 404 Curse, at least for now", 200, 0, 0);
                     player.DelBuff(ModContent.BuffType<The404Curse>());
+                    return true;
                 }
             }
             else
             {
                 Main.NewText("You have not had the 404 Curse", 200, 0, 0);
+                return false;
             }
-            return true;
         }
         
         public override void AddRecipes()
