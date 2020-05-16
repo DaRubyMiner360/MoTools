@@ -7,7 +7,8 @@ namespace MoTools.Items.Placeable
 	public class PaperWorkbench : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("A paper workbench\nMade of paper\nMade to make paper");
+			DisplayName.SetDefault("Printing Press");
+			Tooltip.SetDefault("A printing press!\nMade to work with paper!");
 		}
 
 		public override void SetDefaults() {

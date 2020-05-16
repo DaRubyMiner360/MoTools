@@ -40,11 +40,18 @@ Currently There Is
    -Paper Cut(Boss)
    -Quasar Shotgun(Gun(Ranged))
    -Paper
+   -Printing Press
    -Paper Armor
    -Reinforced Paper Armor
    -404 Crystals(Ore)
    -Error 666 Wings(Dev Item(Wings)
    -404 Sword(Sword(Melee))
+   -404 Infused King Slime(Boss(Post-Moonlord)(404 Infused Version of King Slime))
+   -404 Infused Eye of Cthulhu(Boss(Post-404 Infused King Slime)(404 Infused Version of Eye of Cthulhu))
+   -The Celestial(Boss(End Game))
+   -The 404 Curse(Debuff)
+   -The 404 Nullifier(Potion(Cures/Makes Immune To The 404 Curse))
+
 
 Adding In The Future
    -Nebula Staff(Mage Weapon)
@@ -67,10 +74,10 @@ Download Checklist
    Downloads = 3500 = ACHIEVED
    Downloads = 4000 = ACHIEVED
    Downloads = 4500 = ACHIEVED
-   Downloads = 5000 = UNACHIEVED
-   Downloads = 5500 = UNACHIEVED
-   Downloads = 6000 = UNACHIEVED
-   Downloads = 6500 = UNACHIEVED
+   Downloads = 5000 = ACHIEVED
+   Downloads = 5500 = ACHIEVED
+   Downloads = 6000 = ACHIEVED
+   Downloads = 6500 = ACHIEVED
    Downloads = 7000 = UNACHIEVED
    Downloads = 7500 = UNACHIEVED
    Downloads = 8000 = UNACHIEVED
@@ -79,4 +86,4 @@ Download Checklist
    Downloads = 9500 = UNACHIEVED
    Downloads = 10000 = UNACHIEVED
 Exact Amount
-   Downloads = 4805
+   Downloads = 6745

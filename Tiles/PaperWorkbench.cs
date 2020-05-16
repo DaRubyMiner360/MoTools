@@ -21,7 +21,7 @@ namespace MoTools.Tiles
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Paper Workbench");
+			name.SetDefault("Printing Press");
 			AddMapEntry(new Color(200, 200, 200), name);
 			dustType = DustType<Sparkle>();
 			disableSmartCursor = true;

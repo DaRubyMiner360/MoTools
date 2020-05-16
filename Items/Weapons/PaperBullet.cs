@@ -10,7 +10,7 @@ namespace MoTools.Items.Weapons
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Paper Ball");
-			Tooltip.SetDefault("It's a bullet made of paper!");
+			Tooltip.SetDefault("It's a bullet made of paper!\nIt's a crumbled up piece of paper!\nIt's a... PAPER BALL!!!");
 		}
 
 		public override void SetDefaults() {

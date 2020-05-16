@@ -11,10 +11,10 @@ namespace MoTools.Items
 	//    Within your ModPlayer, you need to save/load a count of usages. You also need to sync the data to other players. 
 	internal class The404LifeFruit : ModItem
 	{
-		public override string Texture => "Terraria/Item_" + ItemID.LifeFruit;
+		public override string Texture => "Terraria/Item_" + ItemID.LifeCrystal;
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("404 Life Fruit");
+			DisplayName.SetDefault("404 Life Crystal");
 			Tooltip.SetDefault("Permanently increases maximum life by 10\nUp to 10 can be used");
 		}
 
