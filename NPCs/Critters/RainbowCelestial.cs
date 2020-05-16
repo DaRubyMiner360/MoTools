@@ -17,7 +17,7 @@ namespace MoTools.NPCs.Critters
 	/// </summary>
 	internal class RainbowCelestialNPC : ModNPC
 	{
-		public override bool Autoload(ref string name)
+		/*public override bool Autoload(ref string name)
 		{
 			IL.Terraria.Wiring.HitWireSingle += HookStatue;
 			return base.Autoload(ref name);
@@ -116,7 +116,7 @@ namespace MoTools.NPCs.Critters
 
 			// couldn't find the right place to insert
 			throw new Exception("Hook location not found, switch(*) { case 56: ...");
-		}
+		}*/
 
 		public override void SetStaticDefaults()
 		{
