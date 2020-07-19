@@ -69,7 +69,7 @@ namespace MoTools.NPCs.TheCelestial
             npc.boss = true;
             npc.lavaImmune = true;
             npc.noGravity = true;
-            npc.noTileCollide = true;
+            //npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TheCelestial");
             bossBag = ModContent.ItemType<TheCelestialTreasureBag>();
 
@@ -78,7 +78,7 @@ namespace MoTools.NPCs.TheCelestial
                 //long max = 5000000000;
 
                 //npc.lifeMax = (int)max;
-                npc.lifeMax = 50000000;
+                npc.lifeMax = 500000000;
                 npc.damage = 500;
                 npc.defense = 300;
             }
@@ -87,7 +87,7 @@ namespace MoTools.NPCs.TheCelestial
                 //long max = 2500000000;
 
                 //npc.lifeMax = (int)max;
-                npc.lifeMax = 25000000;
+                npc.lifeMax = 250000000;
                 npc.damage = 250;
                 npc.defense = 150;
             }
@@ -107,7 +107,7 @@ namespace MoTools.NPCs.TheCelestial
                 //long max = 5000000000;
 
                 //npc.lifeMax = (int)max + numPlayers * (int)max;
-                npc.lifeMax = 50000000 + numPlayers * 50000000;
+                npc.lifeMax = 500000000 + numPlayers * 500000000;
                 npc.damage = 500;
                 npc.defense = 300;
             }

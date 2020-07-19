@@ -1,8 +1,9 @@
 displayName = Mo' Tools
 author = DaRubyMiner360
-version = 1.3.3.3
+version = 1.3.3.4
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Items\Weapons\Test.*
 includePDB = false
+homepage = https://forums.terraria.org/index.php?threads/mo-tools.96059/

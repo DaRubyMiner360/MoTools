@@ -23,6 +23,8 @@ namespace MoTools
         public static bool downedThe404KingSlime = false;
         public static bool downedThe404EoC = false;
         public static bool downedThe404EoW = false;
+        public static bool downedThe404BoC = false;
+        public static bool downedThe404QueenBee = false;
         public static bool downedTheCelestial = false;
         public static bool spawned404Crystals = false;
         public static bool hardMode = false;
@@ -46,6 +48,8 @@ namespace MoTools
             downedThe404KingSlime = false;
             downedThe404EoC = false;
             downedThe404EoW = false;
+            downedThe404BoC = false;
+            downedThe404QueenBee = false;
             downedTheCelestial = false;
             spawned404Crystals = false;
             hardMode = false;
@@ -76,6 +80,8 @@ namespace MoTools
             if (downedThe404KingSlime) downed.Add("the404KingSlime");
             if (downedThe404EoC) downed.Add("the404EoC");
             if (downedThe404EoW) downed.Add("the404EoW");
+            if (downedThe404BoC) downed.Add("the404BoC");
+            if (downedThe404QueenBee) downed.Add("the404QueenBee");
             if (downedTheCelestial) downed.Add("theCelestial");
             if (obEnf) obs = true;
             pwr = power;
@@ -95,6 +101,8 @@ namespace MoTools
             downedThe404KingSlime = downed.Contains("the404KingSlime");
             downedThe404EoC = downed.Contains("the404EoC");
             downedThe404EoW = downed.Contains("the404EoW");
+            downedThe404BoC = downed.Contains("the404BoC");
+            downedThe404QueenBee = downed.Contains("the404QueenBee");
             downedTheCelestial = downed.Contains("theCelestial");
             obEnf = tag.GetBool("steam");
             bysmal = tag.GetBool("bysmal");
@@ -112,9 +120,11 @@ namespace MoTools
                 downedThe404KingSlime = flags[2];
                 downedThe404EoC = flags[3];
                 downedThe404EoW = flags[4];
-                downedTheCelestial = flags[5];
+                downedThe404BoC = flags[5];
+                downedTheCelestial = flags[6];
 
                 BitsByte flags2 = reader.ReadByte();
+                downedThe404QueenBee = flags2[0];
                 obEnf = flags2[4];
                 bysmal = flags2[6];
             }
@@ -132,8 +142,11 @@ namespace MoTools
             flags[2] = downedThe404KingSlime;
             flags[3] = downedThe404EoC;
             flags[4] = downedThe404EoW;
-            flags[5] = downedTheCelestial;
+            flags[5] = downedThe404BoC;
+            flags[6] = downedTheCelestial;
 
+            BitsByte flags2 = new BitsByte();
+            flags[0] = downedThe404QueenBee;
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -144,8 +157,11 @@ namespace MoTools
             downedThe404KingSlime = flags[2];
             downedThe404EoC = flags[3];
             downedThe404EoW = flags[4];
-            downedTheCelestial = flags[5];
+            downedThe404BoC = flags[5];
+            downedTheCelestial = flags[6];
 
+            BitsByte flags2 = reader.ReadByte();
+            downedThe404QueenBee = flags[0];
         }
 
         public override void ResetNearbyTileEffects()

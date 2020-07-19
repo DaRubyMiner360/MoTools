@@ -208,6 +208,41 @@ namespace MoTools
 		[Tooltip("Sets Paper Cut's HP.")]
 		public int PaperCutHP { get; set; }
 
+		[ReloadRequired]
+		[DefaultValue(40000)]
+		[Range(1, 99999999999999)]
+		[Label("The 404 Infused King Slime HP")]
+		[Tooltip("Sets The 404 Infused King Slime's HP.")]
+		public int The404KingSlimeHP { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(56000)]
+		[Range(1, 99999999999999)]
+		[Label("The 404 Infused Eye of Cthulhu HP")]
+		[Tooltip("Sets The 404 Infused Eye of Cthulhu's HP.")]
+		public int The404EoCHP { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(20000)]
+		[Range(1, 99999999999999)]
+		[Label("The 404 Infused Brain of Cthulhu HP")]
+		[Tooltip("Sets The 404 Infused Brain of Cthulhu's HP.")]
+		public int The404BoCHP { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(68000)]
+		[Range(1, 99999999999999)]
+		[Label("The 404 Infused Queen Bee HP")]
+		[Tooltip("Sets The 404 Infused Queen Bee's HP.")]
+		public int The404QueenBeeHP { get; set; }
+
+		[ReloadRequired]
+		[DefaultValue(250000000)]
+		[Range(1, 99999999999999)]
+		[Label("The Celestial HP")]
+		[Tooltip("Sets The Celestial's HP.")]
+		public int TheCelestialHP { get; set; }
+
 		// We will use attributes to annotate our fields or properties so tModLoader can properly handle them.
 
 		// First, we will learn about DefaultValue. You might assume "public bool BoolExample = true;" to work, 

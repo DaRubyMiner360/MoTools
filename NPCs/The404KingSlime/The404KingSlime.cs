@@ -10,11 +10,7 @@ using MoTools.Items.Banners;
 
 namespace MoTools.NPCs.The404KingSlime
 {
-	/// <summary>
-	/// This file shows off a critter npc. The unique thing about critters is how you can catch them with a bug net.  
-	/// The important bits are: Main.npcCatchable, npc.catchItem, and item.makeNPC
-	/// We will also show off adding an item to an existing RecipeGroup (see ExampleMod.AddRecipeGroups)
-	/// </summary>
+	[AutoloadBossHead]
 	public class The404KingSlime : ModNPC
 	{
 		public static Random rnd = new Random();
@@ -33,12 +29,12 @@ namespace MoTools.NPCs.The404KingSlime
 			npc.defense = 20;
 			if (Main.expertMode == true)
 			{
-				npc.lifeMax = 5600;
+				npc.lifeMax = 56000;
 				npc.damage = 128;
 			}
             else
             {
-				npc.lifeMax = 4000;
+				npc.lifeMax = 40000;
 				npc.damage = 80;
 			}
 			//npc.HitSound = SoundID.NPCHit1;

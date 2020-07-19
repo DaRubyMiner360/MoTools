@@ -7,17 +7,17 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using MoTools.Items.Banners;
 
-namespace MoTools.NPCs.The404EoC
+namespace MoTools.NPCs.The404BoC
 {
 	[AutoloadBossHead]
-	public class The404EoC : ModNPC
+	public class The404BoC : ModNPC
 	{
 		public static Random rnd = new Random();
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("404 Infused Eye of Cthulhu");
-			Main.npcFrameCount[npc.type] = 6;
+			DisplayName.SetDefault("404 Infused Brain of Cthulhu");
+			Main.npcFrameCount[npc.type] = 8;
 		}
 
 		public override void SetDefaults()
@@ -25,16 +25,16 @@ namespace MoTools.NPCs.The404EoC
 			npc.width = 400;
 			npc.height = 480;
 			//npc.aiStyle = 67;
-			npc.defense = 20;
+			npc.defense = 14;
 			if (Main.expertMode == true)
 			{
-				npc.lifeMax = 72800;
-				npc.damage = 128;
+				npc.lifeMax = 34000;
+				npc.damage = 108;
 			}
             else
             {
-				npc.lifeMax = 56000;
-				npc.damage = 80;
+				npc.lifeMax = 20000;
+				npc.damage = 60;
 			}
 			//npc.HitSound = SoundID.NPCHit1;
 			//npc.DeathSound = SoundID.NPCDeath1;
@@ -42,10 +42,10 @@ namespace MoTools.NPCs.The404EoC
 			//npc.noGravity = true;
 			//npc.catchItem = 2007;
 
-			npc.CloneDefaults(NPCID.EyeofCthulhu);
+			npc.CloneDefaults(NPCID.BrainofCthulhu);
 			//npc.aiStyle = 0;
-			aiType = NPCID.EyeofCthulhu;
-			animationType = NPCID.EyeofCthulhu;
+			aiType = NPCID.BrainofCthulhu;
+			animationType = NPCID.BrainofCthulhu;
 		}
 
 		public override void NPCLoot()
@@ -93,7 +93,7 @@ namespace MoTools.NPCs.The404EoC
 				Main.NewText("I told you the crown of slime had been lost in the battle, and the slimes were growing restless", 0, 0, 200);
 			}*/
 
-			MoToolsWorld.downedThe404EoC = true;
+			MoToolsWorld.downedThe404BoC = true;
 		}
 	}
 }
