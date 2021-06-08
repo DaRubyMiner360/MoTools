@@ -60,11 +60,6 @@ namespace MoTools
 		public bool DisableNpcIDCommand { get; set; }
 
 		[ReloadRequired]
-		[Label("Disable Lag Command")]
-		[Tooltip("Prevents Using The Lag Command.")]
-		public bool DisableLagCommand { get; set; }
-
-		[ReloadRequired]
 		[Label("Disable Time Command")]
 		[Tooltip("Prevents Using The Time Command.")]
 		public bool DisableTimeCommand { get; set; }
