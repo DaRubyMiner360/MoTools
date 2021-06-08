@@ -33,6 +33,11 @@ namespace MoTools
 		// You MUST specify a ConfigScope.
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
+		[ReloadRequired]
+		[Label("Disable The 404 Curse")]
+		[Tooltip("Prevents The 404 Curse From Doing Anything.")]
+		public bool DisableThe404Curse { get; set; }
+
 		[DefaultValue(true)]
 		[ReloadRequired]
 		[Label("Disable Rainbow Celestial Dropping 404 Essence")]
@@ -78,6 +83,11 @@ namespace MoTools
 		[Label("Disable World Buster Command")]
 		[Tooltip("Prevents Using The World Buster Command.")]
 		public bool DisableWorldBusterCommand { get; set; }
+
+		[ReloadRequired]
+		[Label("Disable Back Command")]
+		[Tooltip("Prevents Using The Back Command.")]
+		public bool DisableBackCommand { get; set; }
 
 		// We will use attributes to annotate our fields or properties so tModLoader can properly handle them.
 
@@ -166,6 +176,10 @@ namespace MoTools
 		[Tooltip("Prevents Using The Lag Command.")]
 		public bool DisableLagCommand { get; set; }
 
+		[Label("Disable Back Command")]
+		[Tooltip("Prevents Using The Back Command.")]
+		public bool DisableBackCommand { get; set; }
+
 		[Label("Disable Time Command")]
 		[Tooltip("Prevents Using The Time Command.")]
 		public bool DisableTimeCommand { get; set; }
@@ -181,6 +195,10 @@ namespace MoTools
 		[Label("Disable World Buster Command")]
 		[Tooltip("Prevents Using The World Buster Command.")]
 		public bool DisableWorldBusterCommand { get; set; }
+
+		[Label("Enable Editor Mode")]
+		[Tooltip("Activates Editor Mode.")]
+		public bool EditorMode { get; set; }
 
 		/*public override void OnChanged() {
 			// Here we use the OnChanged hook to initialize ExampleUI.visible with the new values.
@@ -332,12 +350,12 @@ namespace MoTools
 		// When using XDefinition classes, you can the .Type property to get the ID of the item. You can use .IsUnloaded to check if the item in question is loaded.
 		public ItemDefinition itemDefinitionExample; 
 		public NPCDefinition npcDefinitionExample = new NPCDefinition(NPCID.Bunny);
-		public ProjectileDefinition projectileDefinitionExample = new ProjectileDefinition("ExampleMod", nameof(Projectiles.Wisp));
+		public ProjectileDefinition projectileDefinitionExample = new ProjectileDefinition("MoTools", nameof(Projectiles.Wisp));
 
 		// Data Structures of reference types
 		public Dictionary<PrefixDefinition, float> SomeClassE = new Dictionary<PrefixDefinition, float>() {
-			[new PrefixDefinition("ExampleMod", "Awesome")] = 0.5f,
-			[new PrefixDefinition("ExampleMod", "ReallyAwesome")] = 0.8f
+			[new PrefixDefinition("MoTools", "Awesome")] = 0.5f,
+			[new PrefixDefinition("MoTools", "ReallyAwesome")] = 0.8f
 		};
 
 		// Using a custom class as a key in a Dictionary. When used as a Dictionary Key, special code must be used.
@@ -430,12 +448,12 @@ namespace MoTools
 		[SliderColor(255, 0, 127)]
 		public float SomeFloat;
 
-		// Using localization keys will help make your config readable in multiple languages. See ExampleMod/Localization/en-US.lang
-		[Label("$Mods.ExampleMod.Common.LocalizedLabel")]
-		[Tooltip("$Mods.ExampleMod.Common.LocalizedTooltip")]
+		// Using localization keys will help make your config readable in multiple languages. See MoTools/Localization/en-US.lang
+		[Label("$Mods.MoTools.Common.LocalizedLabel")]
+		[Tooltip("$Mods.MoTools.Common.LocalizedTooltip")]
 		public int LocalizedLabel;
 
-		[Label("$Mods.ExampleMod.Common.LocalizedLabelDynamic")]
+		[Label("$Mods.MoTools.Common.LocalizedLabelDynamic")]
 		public int LocalizedLabelDynamic;
 
 		// The color of the config entry can be customized. R, G, B
@@ -450,7 +468,7 @@ namespace MoTools
 		[Header("Headers Section")]
 		public int Header;
 
-		[Header("$Mods.ExampleMod.Common.LocalizedHeader")]
+		[Header("$Mods.MoTools.Common.LocalizedHeader")]
 		public int LocalizedHeader;
 
 		[Header("[i:19][c/00FF00:Green Text]")]
@@ -755,7 +773,7 @@ namespace MoTools
 		// If you change ModConfig fields between versions, your users might notice their configuration is lost when they update their mod.
 		// We can use [JsonExtensionData] to capture un-de-serialized data and manually restore them to new fields.
 		// Imagine in a previous version of this mod, we had a field "OldListOfInts" and we want to preserve that data in "ListOfInts".
-		// To test this, insert the following into ExampleMod_ModConfigShowcase.json: "OldListOfInts": [ 99, 999],
+		// To test this, insert the following into MoTools_ModConfigShowcase.json: "OldListOfInts": [ 99, 999],
 		if (_additionalData.TryGetValue("OldListOfInts", out var token))
 		{
 			var OldListOfInts = token.ToObject<List<int>>();

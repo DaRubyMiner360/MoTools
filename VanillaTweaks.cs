@@ -51,21 +51,20 @@ namespace MoTools
             }
             if (!MoToolsWorld.hardMode && npc.type == NPCID.WallofFlesh)
             {
-                for (int i = -1; i < Main.maxTilesX; i++)
+                for (int i = 0; i < Main.maxTilesY; i++)
                 {
-                    Main.tile[i, Main.maxTilesY / 2].type = TileID.Ebonstone;
+                    Main.tile[-1, i].type = TileID.Ebonstone;
                 }
-                for (int i = 0; i < Main.maxTilesX; i++)
+                for (int i = 0; i < Main.maxTilesY; i++)
                 {
-                    Main.tile[i, Main.maxTilesY / 2].type = TileID.Pearlstone;
+                    Main.tile[0, i].type = TileID.Pearlstone;
                 }
-                for (int i = 1; i < Main.maxTilesX; i++)
+                for (int i = 0; i < Main.maxTilesY; i++)
                 {
-                    Main.tile[i, Main.maxTilesY / 2].type = TileID.Crimstone;
+                    Main.tile[1, i].type = TileID.Crimstone;
                 }
                 MoToolsWorld.hardMode = true;
             }
-            // Addtional if statements here if you would like to add drops to other vanilla npc.
         }
     }
 }

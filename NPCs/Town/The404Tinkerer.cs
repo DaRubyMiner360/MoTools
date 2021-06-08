@@ -1,9 +1,5 @@
 using System;
 using MoTools.Dusts;
-using MoTools.Items;
-using MoTools.Items.Weapons;
-using MoTools.Tiles;
-using MoTools.Walls;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -51,7 +47,7 @@ namespace MoTools.NPCs
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath1;
 			npc.knockBackResist = 0.5f;
-			animationType = NPCID.Guide;
+			animationType = NPCID.GoblinTinkerer;
 		}
 
 		public override void HitEffect(int hitDirection, double damage) {
@@ -68,22 +64,27 @@ namespace MoTools.NPCs
 					continue;
 				}
 
-				foreach (Item item in player.inventory) {
+				if (MoToolsPlayer.Get(player).ZoneThe404Realm)
+                {
+					return true;
+                }
+
+				/*foreach (Item item in player.inventory) {
 					if (item.type == ItemType<Items.Placeable.The404Ore>() || item.type == ItemType<Items.The404Essence>()) {
 						return true;
 					}
-				}
+				}*/
 			}
 			return false;
 		}
 
-		// Example Person needs a house built out of MoTools tiles. You can delete this whole method in your townNPC for the regular house conditions.
+		// The 404 Tinkerer needs a house built out of 404 tiles.
 		/*public override bool CheckConditions(int left, int right, int top, int bottom) {
 			int score = 0;
 			for (int x = left; x <= right; x++) {
 				for (int y = top; y <= bottom; y++) {
 					int type = Main.tile[x, y].type;
-					if (type == TileType<ExampleBlock>() || type == TileType<ExampleChair>() || type == TileType<ExampleWorkbench>() || type == TileType<ExampleBed>() || type == TileType<ExampleDoorOpen>() || type == TileType<ExampleDoorClosed>()) {
+					if (type == TileType<The404Ore>() || type == TileType<ExampleChair>() || type == TileType<ExampleWorkbench>() || type == TileType<ExampleBed>() || type == TileType<ExampleDoorOpen>() || type == TileType<ExampleDoorClosed>()) {
 						score++;
 					}
 					if (Main.tile[x, y].wall == WallType<ExampleWall>()) {

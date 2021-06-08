@@ -9,8 +9,8 @@ namespace MoTools.Items.Consumables
 	public class BlueCelestialSummon : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Yellow Celestial");
-			Tooltip.SetDefault("The wrath of the yellow sky");
+			DisplayName.SetDefault("Blue Celestial");
+			Tooltip.SetDefault("The wrath of the blue sky");
 			ItemID.Sets.SortingPriorityBossSpawns[item.type] = 12; // This helps sort inventory know this is a boss summoning item.
 		}
 

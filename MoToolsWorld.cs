@@ -13,11 +13,15 @@ using static Terraria.ModLoader.ModContent;
 using MoTools.Items.Accessories;
 using MoTools.Items.Equipables;
 using MoTools.Items;
+using Microsoft.Xna.Framework;
+using MoTools.Projectiles;
 
 namespace MoTools
 {
-    public partial class MoToolsWorld : ModWorld
+    public class MoToolsWorld : ModWorld
     {
+        public static MoToolsWorld instance;
+
         public static bool downedAnnihilator = false;
         public static bool downedPaperCut = false;
         public static bool downedThe404KingSlime = false;
@@ -26,11 +30,17 @@ namespace MoTools
         public static bool downedThe404BoC = false;
         public static bool downedThe404QueenBee = false;
         public static bool downedTheCelestial = false;
+        public static bool downedThe404Celestial = false;
         public static bool spawned404Crystals = false;
         public static bool hardMode = false;
+        public static bool MentalMode = false;
         public static int power = 0;
         public static bool obEnf = false; //steamEnfused
         public static bool bysmal = false;
+        public static int the404Tiles;
+        public static int[] allTiles;
+        public static int allTilesCount;
+        public static int total404Tiles;
 
         public static int sizeMult = (int)(Math.Round(Main.maxTilesX / 4200f)); //Small = 2; Medium = ~3; Large = 4;
 
@@ -41,6 +51,11 @@ namespace MoTools
 
         public override void Initialize()
         {
+            if(instance == null)
+            {
+                instance = this;
+            }
+
             sizeMult = (int)(Math.Floor(Main.maxTilesX / 4200f));
             power = 0;
             downedAnnihilator = false;
@@ -51,6 +66,7 @@ namespace MoTools
             downedThe404BoC = false;
             downedThe404QueenBee = false;
             downedTheCelestial = false;
+            downedThe404Celestial = false;
             spawned404Crystals = false;
             hardMode = false;
             zawarudo = 0;
@@ -58,7 +74,7 @@ namespace MoTools
             bysmal = false;
             steamPosition = 0;
         }
-
+        
         public override void PostUpdate()
         {
             /*if (downedEtheria)
@@ -68,6 +84,36 @@ namespace MoTools
             }*/
 
             Ameldera = Main.raining;
+
+            return; // Uncomment when trying to fix
+            if (spawned404Crystals)
+            {
+                if (Main.rand.Next(1, 100) == 1)
+                {
+                    int x = Main.rand.Next(0, Main.maxTilesX);
+                    int y = (int)Main.worldSurface;
+
+                    //Vector2 vector2_1 = new Vector2((float)((double)player.position.X + (double)player.width * 0.5 + (double)(Main.rand.Next(201) * -player.direction) + ((double)Main.mouseX + (double)Main.screenPosition.X - (double)player.position.X)), (float)((double)player.position.Y + (double)player.height * 0.5 - 600.0));   //this defines the projectile width, direction and position
+                    //vector2_1.X = (float)(((double)vector2_1.X + (double)player.Center.X) / 2.0) + (float)Main.rand.Next(-200, 201);
+                    //vector2_1.Y -= (float)(100);
+                    Vector2 vector2_1 = new Vector2(x, y);
+                    foreach (Player player in Main.player)
+                    {
+                        player.position = vector2_1;
+                    }
+                    float num12 = (float)Main.mouseX + Main.screenPosition.X - vector2_1.X;
+                    float num13 = (float)Main.mouseY + Main.screenPosition.Y - vector2_1.Y;
+                    if ((double)num13 < 0.0) num13 *= -1f;
+                    if ((double)num13 < 20.0) num13 = 20f;
+                    float num14 = (float)Math.Sqrt((double)num12 * (double)num12 + (double)num13 * (double)num13);
+                    float num15 = 1 / num14;
+                    float num16 = num12 * num15;
+                    float num17 = num13 * num15;
+                    float SpeedX = num16 + (float)Main.rand.Next(-40, 41) * 0.02f; //change the Main.rand.Next here to, for example, (-10, 11) to reduce the spread. Change this to 0 to remove it altogether
+                    float SpeedY = num17 + (float)Main.rand.Next(-40, 41) * 0.02f;
+                    Projectile.NewProjectile(vector2_1.X, vector2_1.Y, SpeedX, SpeedY, ProjectileType<OreCometProjectile>(), 0, 0, Main.myPlayer, 0.0f, (float)Main.rand.Next(5));
+                }
+            }
         }
 
         public override TagCompound Save()
@@ -104,9 +150,7 @@ namespace MoTools
             downedThe404BoC = downed.Contains("the404BoC");
             downedThe404QueenBee = downed.Contains("the404QueenBee");
             downedTheCelestial = downed.Contains("theCelestial");
-            obEnf = tag.GetBool("steam");
-            bysmal = tag.GetBool("bysmal");
-            power = tag.GetInt("power");
+            downedThe404Celestial = downed.Contains("the404Celestial");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -118,15 +162,16 @@ namespace MoTools
                 downedAnnihilator = flags[0];
                 downedPaperCut = flags[1];
                 downedThe404KingSlime = flags[2];
-                downedThe404EoC = flags[3];
-                downedThe404EoW = flags[4];
-                downedThe404BoC = flags[5];
-                downedTheCelestial = flags[6];
 
                 BitsByte flags2 = reader.ReadByte();
                 downedThe404QueenBee = flags2[0];
-                obEnf = flags2[4];
-                bysmal = flags2[6];
+                downedThe404Celestial = flags2[1];
+                downedTheCelestial = flags2[2];
+
+                BitsByte flags3 = reader.ReadByte();
+                downedThe404BoC = flags3[0];
+                downedThe404EoW = flags3[1];
+                downedThe404EoC = flags3[2];
             }
             else
             {
@@ -140,13 +185,19 @@ namespace MoTools
             flags[0] = downedAnnihilator;
             flags[1] = downedPaperCut;
             flags[2] = downedThe404KingSlime;
-            flags[3] = downedThe404EoC;
-            flags[4] = downedThe404EoW;
-            flags[5] = downedThe404BoC;
-            flags[6] = downedTheCelestial;
+            writer.Write(flags);
 
             BitsByte flags2 = new BitsByte();
-            flags[0] = downedThe404QueenBee;
+            flags2[0] = downedThe404QueenBee;
+            flags2[1] = downedThe404Celestial;
+            flags2[2] = downedTheCelestial;
+            writer.Write(flags2);
+
+            BitsByte flags3 = new BitsByte();
+            flags3[0] = downedThe404BoC;
+            flags3[1] = downedThe404EoW;
+            flags3[2] = downedThe404EoC;
+            writer.Write(flags3);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -155,21 +206,36 @@ namespace MoTools
             downedAnnihilator = flags[0];
             downedPaperCut = flags[1];
             downedThe404KingSlime = flags[2];
-            downedThe404EoC = flags[3];
-            downedThe404EoW = flags[4];
-            downedThe404BoC = flags[5];
-            downedTheCelestial = flags[6];
 
             BitsByte flags2 = reader.ReadByte();
-            downedThe404QueenBee = flags[0];
+            downedThe404QueenBee = flags2[0];
+            downedThe404Celestial = flags2[1];
+            downedTheCelestial = flags2[2];
+
+            BitsByte flags3 = reader.ReadByte();
+            downedThe404BoC = flags3[0];
+            downedThe404EoW = flags3[1];
+            downedThe404EoC = flags3[2];
         }
 
         public override void ResetNearbyTileEffects()
         {
+            MoToolsPlayer modPlayer = Main.LocalPlayer.GetModPlayer<MoToolsPlayer>();
+            modPlayer.voidMonolith = false;
+            the404Tiles = 0;
+            
         }
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
+            allTiles = tileCounts;
+            allTilesCount = Main.tileSolid.Length;
+
+            // Here we count various tiles towards ZoneThe404Realm
+            the404Tiles = tileCounts[TileType<The404Block>()] + tileCounts[TileType<The404Sand>()] + tileCounts[TileType<The404Chair>()] + tileCounts[TileType<The404Chest>()] + tileCounts[TileType<The404Forge>()] + tileCounts[TileType<The404Platform>()] + tileCounts[TileType<The404Workbench>()] + tileCounts[TileType<ExtremeForge>()];
+
+            // We can also add to vanilla biome counts if appropriate. Here we are adding to the ZoneDesert since we have a sand tile in the mod.
+            Main.sandTiles += tileCounts[TileType<The404Sand>()];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
@@ -180,7 +246,7 @@ namespace MoTools
             if (ShiniesIndex != -1)
             {
                 // Next, we insert our step directly after the original "Shinies" step. 
-                // ExampleModOres is a method seen below.
+                // MoToolsOres is a method seen below.
                 tasks.Insert(ShiniesIndex + 1, new PassLegacy("404 Crystals", The404Ore));
             }
 
@@ -224,6 +290,15 @@ namespace MoTools
                 }*/
             }
         }
+		
+        public void OreComet(Vector2 position)
+        {
+            Main.NewText("A 404 Comet is falling!", 200, 0, 200);
+            int x = (int)position.X;
+            int y = (int)position.Y;
+            int[] tileIDs = { 6, 7, 8, 9, 166, 167, 168, 169, TileType<The404Ore>() };
+            WorldGen.TileRunner(x, y, (double)WorldGen.genRand.Next(2, 5), WorldGen.genRand.Next(4, 7), mod.TileType("The404Ore"), false, 0f, 0f, false, true);
+        }
 
         /*public override void PostWorldGen()
         {
@@ -255,7 +330,7 @@ namespace MoTools
 
         private static int GetSteamLoot()
         {
-            int[] steamLoot = new int[] { /*ModContent.ItemType<Eruption>(), */ModContent.ItemType<FireDust>(), ModContent.ItemType<CrystalizedMagma>(), ModContent.ItemType<SteamLily>(), ModContent.ItemType<MagmaHeart>(), ModContent.ItemType<Ragnashia>(), };
+            int[] steamLoot = new int[] { /*ItemType<Eruption>(), */ItemType<FireDust>(), ItemType<CrystalizedMagma>(), ItemType<SteamLily>(), ItemType<MagmaHeart>(), ItemType<Ragnashia>(), };
 
             if (steamPosition < steamLoot.GetLength(0))
                 return steamLoot[steamPosition];
@@ -279,7 +354,7 @@ namespace MoTools
 
         private static int[] GetSteamPotionLoot()
         {
-            int[] potLoot = new int[] { /*ModContent.ItemType<DestructionPotion>(), ModContent.ItemType<IllusionPotion>(), ModContent.ItemType<ConjurationPotion>(), ModContent.ItemType<JumpBoostPotion>(), */ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
+            int[] potLoot = new int[] { /*ItemType<DestructionPotion>(), ItemType<IllusionPotion>(), ItemType<ConjurationPotion>(), ItemType<JumpBoostPotion>(), */ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
             int potPos = Main.rand.Next(potLoot.GetLength(0));
             int potCount = Main.rand.Next(2, 5);
             int[] pot = { 0, 0 };
@@ -311,9 +386,9 @@ namespace MoTools
         private static int[] GetSteamMiscLoot()
         {
             int[] mscLoot = new int[] {
-                ModContent.ItemType<Items.Placeable.LavaGem>(), ModContent.ItemType<ArcaneShard>(),
-                ModContent.ItemType<Items.Placeable.LavaGem>(), ModContent.ItemType<RubrumDust>(),
-                /*ModContent.ItemType<AlbusDust>(), ModContent.ItemType<VerdiDust>() */};
+                ItemType<Items.Placeable.LavaGem>(), ItemType<ArcaneShard>(),
+                ItemType<Items.Placeable.LavaGem>(), ItemType<RubrumDust>(),
+                /*ItemType<AlbusDust>(), ItemType<VerdiDust>() */};
 
             int mscPos = Main.rand.Next(mscLoot.GetLength(0));
             int mscCount = Main.rand.Next(2, 6);
@@ -326,7 +401,7 @@ namespace MoTools
         public static void PlaceSteamChest(int x, int y, ushort floorType)
         {
             ClearSpaceForChest(x, y, floorType);
-            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)ModContent.TileType<SteamChest>(), false, 0);
+            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)TileType<SteamChest>(), false, 0);
 
             int specialItem = GetSteamLoot();
             steamPosition++;

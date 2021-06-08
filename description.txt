@@ -1,64 +1,14 @@
-Mo' Tools adds more TOOLS and WEAPONS to Terraria, as well as some other things.
+The Celestial Overtaking adds many new things to Terraria!
 
-Currently There Is
-   - Ark of The Heavens(Sword(Melee))
-   - True Ark of The Heavens(Sword(Melee))
-   - 404 Gun(Gun(Ranged))
-   - 404 Bow(Bow(Ranged))
-   - Celestial(Mount)
-   - Car(Mount)
-   - Celestial Car(Mount)
-   - White Celestial(Enemy NPC)
-   - White Celestial(Summon Item)
-   - Black Celestial(Enemy NPC)
-   - Black Celestial(Summon Item)
-   - Yellow Celestial(Enemy NPC)
-   - Yellow Celestial(Summon Item)
-   - Purple Celestial(Enemy NPC)
-   - Purple Celestial(Summon Item)
-   - Blue Celestial(Enemy NPC)
-   - Blue Celestial(Summon Item)
-   - Ragnarok(Sword(Melee))
-   - True Ragnarok(Sword(Melee))
-   - Black Hole Scythe(Scythe(Melee))
-   - Give Command
-   - Summon Command
-   - NpcID Command
-   - Lag Command
-   - Time Set Command
-   - White Celestial Shards
-   - Black Celestial Shards
-   - Purple Celestial Shards
-   - Yellow Celestial Shards
-   - Blue Celestial Shards
-   - Souls of Thought
-   - Souls of Haught
-   - Souls of Sought
-   - Souls of Height
-   - Cog of Knowledge
-   - The Annihilator(Boss(Post-Moonlord))
-   - Paper Cut(Boss)
-   - Quasar Shotgun(Gun(Ranged))
-   - Paper
-   - Printing Press
-   - Paper Armor
-   - Reinforced Paper Armor
-   - 404 Crystals(Ore)
-   - Error 666 Wings(Dev Item(Wings)
-   - 404 Sword(Sword(Melee))
-   - 404 Infused King Slime(Boss(Post-Moonlord)(404 Infused Version of King Slime))
-   - 404 Infused Eye of Cthulhu(Boss(Post-404 Infused King Slime)(404 Infused Version of Eye of Cthulhu))
-   - 404 Infused Brain of Cthulhu(Boss(Post-404 Infused Eye of Cthulhu)(404 Infused Version of Brain of Cthulhu))
-   - 404 Infused Queen Bee(Boss(Post-404 Infused Brain of Cthulhu)(404 Infused Version of Queen Bee))
-   - The Celestial(Boss(End Game))
-   - The 404 Curse(Crazy Debuff That Has Support For Some Other Mods)
-   - The 404 Nullifier(Potion(Cures/Makes Immune To The 404 Curse))
-   And much more!
-
-Adding In The Future
-   - Nebula Staff(Mage Weapon)
-   - Sun Staff(Summoner)
-   - Wormhole Wand(Similar to the Portal Gun)
+Currently There Are
+   193 New Items,
+   36 New NPCs,
+   41 New Tiles,
+   4 New Walls,
+   9 New Buffs,
+   4 New Mounts
+   1 New Biome,
+   And More!
 
 Credits
    - DaRubyMiner360 for creating this mod
@@ -67,27 +17,26 @@ Credits
 
 Downloads
    Download Checklist
-      Downloads = 1000 = ACHIEVED
       Downloads = 2000 = ACHIEVED
-      Downloads = 3000 = ACHIEVED
       Downloads = 4000 = ACHIEVED
-      Downloads = 5000 = ACHIEVED
       Downloads = 6000 = ACHIEVED
-      Downloads = 7000 = ACHIEVED
       Downloads = 8000 = ACHIEVED
-      Downloads = 9000 = ACHIEVED
       Downloads = 10000 = ACHIEVED
-      Downloads = 11000 = ACHIEVED
-      Downloads = 12000 = UNACHIEVED
-      Downloads = 13000 = UNACHIEVED
-      Downloads = 14000 = UNACHIEVED
-      Downloads = 15000 = UNACHIEVED
-      Downloads = 16000 = UNACHIEVED
-      Downloads = 17000 = UNACHIEVED
-      Downloads = 18000 = UNACHIEVED
-      Downloads = 19000 = UNACHIEVED
-      Downloads = 20000 = UNACHIEVED
+      Downloads = 12000 = ACHIEVED
+      Downloads = 14000 = ACHIEVED
+      Downloads = 16000 = ACHIEVED
+      Downloads = 18000 = ACHIEVED
+      Downloads = 20000 = ACHIEVED
+      Downloads = 22000 = UNACHIEVED
+      Downloads = 24000 = UNACHIEVED
+      Downloads = 26000 = UNACHIEVED
+      Downloads = 28000 = UNACHIEVED
+      Downloads = 30000 = UNACHIEVED
+      Downloads = 32000 = UNACHIEVED
+      Downloads = 34000 = UNACHIEVED
+      Downloads = 36000 = UNACHIEVED
+      Downloads = 38000 = UNACHIEVED
+      Downloads = 40000 = UNACHIEVED
    Exact Amount
-      Downloads = 11350
-      Date Marked: 7/18/2020
-   Thank you all so much for the amazing support! Wiki and more coming very soon!
+      Downloads = 21203
+      Date Marked: 6/8/2021

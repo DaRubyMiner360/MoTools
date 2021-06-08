@@ -8,7 +8,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
-using MoTools.Items;
 using MoTools.NPCs;
 
 namespace MoTools.NPCs.TheCelestial
@@ -60,7 +59,7 @@ namespace MoTools.NPCs.TheCelestial
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TheCelestial");
+            //music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/TheCelestial");
             //bossBag = ModContent.ItemType<TheCelestialTreasureBag>();
 
             if (Main.expertMode == true)
@@ -366,7 +365,7 @@ namespace MoTools.NPCs.TheCelestial
             //MoToolsPlayer modPlayer = MoToolsPlayer.Get();
             {
                 //Mod spectraMod = ModLoader.GetMod("SpectraMod");
-                //Mod exampleMod = ModLoader.GetMod("ExampleMod");
+                //Mod exampleMod = ModLoader.GetMod("MoTools");
 
                 int piller = Main.rand.Next(1, 7);
 

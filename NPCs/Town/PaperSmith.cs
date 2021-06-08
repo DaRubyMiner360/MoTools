@@ -5,7 +5,7 @@ using MoTools.Items.Consumables;
 using MoTools.Items.Weapons;
 using MoTools.Projectiles.Ranged;
 using MoTools.Items.Placeable;
-using MoTools.Items.Placeable.MusicBoxes;
+//using MoTools.Items.Placeable.MusicBoxes;
 using MoTools.Items.Armor.PaperArmor;
 using MoTools.Items.Armor.ReinforcedPaperArmor;
 using Microsoft.Xna.Framework;
@@ -173,7 +173,7 @@ namespace MoTools.NPCs.Town
 			  nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<PaperCutTreasureBag>());
 			 nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemType<PaperCutMusicBox>());
+			shop.item[nextSlot].SetDefaults(MoTools.MoToolsSound.ItemType("PaperCutMusicBox"));
 			 nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<PaperAirplane>());
 			nextSlot++;

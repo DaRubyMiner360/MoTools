@@ -8,9 +8,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
-using MoTools.Items;
 using System.Collections.Specialized;
 using static Terraria.ModLoader.ModContent;
+using On.Terraria.DataStructures;
 
 namespace MoTools.NPCs.TheCelestial
 {
@@ -19,7 +19,8 @@ namespace MoTools.NPCs.TheCelestial
     {
         public static Random rnd = new Random();
         public int spawn = 0;
-        public bool stage2 = false;
+        public static bool stage2 = false;
+        public static bool stage3 = false;
         public float vel = 1f;
         public int velMult = 1;
         public static bool on = false;
@@ -44,7 +45,7 @@ namespace MoTools.NPCs.TheCelestial
         public override void SetStaticDefaults()
         {
             MoToolsVars.eNPCs.Add(npc.type);
-            DisplayName.SetDefault("The Celestial");
+            DisplayName.SetDefault("The Celestial Lord");
             Main.npcFrameCount[npc.type] = 2;
         }
 
@@ -58,6 +59,9 @@ namespace MoTools.NPCs.TheCelestial
             poof = false;
             on = true;
             spawn = 0;
+            stage2 = false;
+            stage3 = false;
+            stage = 1;
             npc.width = 64;
             npc.height = 64;
             //npc.aiStyle = 5;
@@ -70,7 +74,7 @@ namespace MoTools.NPCs.TheCelestial
             npc.lavaImmune = true;
             npc.noGravity = true;
             //npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/TheCelestial");
+            music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/TheCelestial");
             bossBag = ModContent.ItemType<TheCelestialTreasureBag>();
 
             if (Main.expertMode == true)
@@ -122,7 +126,7 @@ namespace MoTools.NPCs.TheCelestial
             }
         }
 
-        private int stage
+        public int stage
         {
             get => (int)npc.ai[0];
             set => npc.ai[0] = value;
@@ -141,12 +145,50 @@ namespace MoTools.NPCs.TheCelestial
         {
             if (Main.expertMode == true)
             {
-                npc.life += 50;
+                npc.life += 50000;
             }
             else
             {
-                npc.life += 25;
+                npc.life += 25000;
             }
+        }
+
+        public override bool StrikeNPC(ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            if (damage >= 25000000)
+            {
+                int rand = Main.rand.Next(1, 3);
+                if (rand == 1 || rand == 2)
+                {
+                    Main.NewText("Hahahahha", 126, 25, 27);
+                    Main.NewText("No", 126, 25, 27);
+                    Main.NewText("No butchering ME!!", 126, 25, 27);
+                    Main.NewText("We invented butchering!!!", 126, 25, 27);
+                    Main.NewText("Now have a taste of your own medicine!!", 126, 25, 27);
+                    // Insta-kill the player
+                    Player player = Main.player[npc.target];
+                    player.AddBuff(BuffType<The404Curse>(), int.MaxValue);
+                    player.statLife -= player.statLife;
+                    player.statMana -= player.statMana;
+                    player.statDefense -= player.statDefense;
+                    // player.KillMe(PlayerDeathReason.ByNPC, player.statLife, hitDirection);
+                }
+                else
+                {
+                    Main.NewText("Hahahahha!!", 126, 25, 27);
+                    Main.NewText("Uno Reverse Card!!", 126, 25, 27);
+                    // Deal the amount of damage to the boss, but instead to the player
+                    Player player = Main.player[npc.target];
+                    player.statLife -= (int)damage;
+                    player.statMana -= (int)damage;
+                    player.statDefense -= (int)damage;
+                }
+                damage = 0;
+                knockback = 0;
+                crit = false;
+                return false;
+            }
+            return true;
         }
 
         public override void AI()
@@ -265,8 +307,8 @@ namespace MoTools.NPCs.TheCelestial
             {
                 on = false;
             }
-            if (npc.velocity.X > 12) npc.velocity.X = 12;
-            if (npc.velocity.Y > 12) npc.velocity.Y = 12;
+            //if (npc.velocity.X > 12) npc.velocity.X = 12;
+            //if (npc.velocity.Y > 12) npc.velocity.Y = 12;
             if (npc.life == npc.lifeMax && spawn < 1 && Main.netMode != 1)
             {
                 poof = true;
@@ -274,15 +316,20 @@ namespace MoTools.NPCs.TheCelestial
                 spawn = 1;
                 if (MoToolsWorld.downedTheCelestial)
                 {
-                    Main.NewText("<The Celestial> What, you again? Oh well...", 150, 250, 150);
+                    Main.NewText("What, you again?", 150, 250, 150);
+                    Main.NewText("Why are you fighting me again???", 150, 250, 150);
+                    Main.NewText("Why don't you fight my 404 infused brother?!?", 150, 250, 150);
                 }
                 else
                 {
-                    Main.NewText("<The Celestial> You, who have challenged me...", 150, 250, 150);
+                    Main.NewText("I have awoken!!", 150, 250, 150);
+                    Main.NewText("Prepare for your life to end!!", 150, 250, 150);
                 }
-                Main.NewText("<The Celestial> Show me the power that has saved Terraria!", 150, 250, 150);
+                Main.NewText("Show me the power that has saved Terraria!", 150, 250, 150);
 
                 stage = 1;
+                stage2 = false;
+                stage3 = false;
             }
             if (npc.life < npc.lifeMax && spawn < 1 && Main.netMode != 1)
             {
@@ -308,7 +355,7 @@ namespace MoTools.NPCs.TheCelestial
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Enemies.PurpleCelestial>());
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Critters.RainbowCelestialNPC>());
             }
-            if (npc.life < npc.lifeMax * .8 && spawn < 3 && Main.netMode != 1 && stage == 1)
+            if (npc.life < npc.lifeMax * .8 && spawn < 3 && Main.netMode != 1)
             {
                 poof = true;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
@@ -332,7 +379,7 @@ namespace MoTools.NPCs.TheCelestial
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Enemies.PurpleCelestial>());
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Critters.RainbowCelestialNPC>());
             }
-            if (npc.life < npc.lifeMax * .6 && spawn < 5 && Main.netMode != 1 && stage == 1)
+            if (npc.life < npc.lifeMax * .6 && spawn < 5 && Main.netMode != 1)
             {
                 poof = true;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
@@ -343,9 +390,11 @@ namespace MoTools.NPCs.TheCelestial
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Enemies.BlueCelestial>());
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Enemies.PurpleCelestial>());
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Critters.RainbowCelestialNPC>());
-                stage = 2;
-                npc.position.X = player.position.X;
-                npc.position.Y = player.position.Y;
+                stage2 = true;
+                //stage3 = false;
+                //stage = 2;
+                /*npc.position.X = player.position.X;
+                npc.position.Y = player.position.Y;*/
             }
             if (npc.life < npc.lifeMax * .5 && spawn < 6 && Main.netMode != 1)
             {
@@ -475,7 +524,7 @@ namespace MoTools.NPCs.TheCelestial
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Critters.RainbowCelestialNPC>());
                 }
             }
-            while (stage == 2)
+            /*while (stage2 && !stage3)
             {
                 int celestial = Main.rand.Next(1, 7);
 
@@ -503,8 +552,11 @@ namespace MoTools.NPCs.TheCelestial
                 {
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<NPCs.Critters.RainbowCelestialNPC>());
                 }
-            }
-            /*while (stage == 2)
+            }*/
+            bool trigger = false;
+            if(npc.life < npc.lifeMax * .6 && spawn < 5 && Main.netMode != 1)
+                trigger = true;
+            while (/*stage2 && !stage3*/trigger)
             {
                 // Gets the Player and Target Vector
                 npc.TargetClosest(true);
@@ -629,12 +681,14 @@ namespace MoTools.NPCs.TheCelestial
 
             if (npc.life < npc.lifeMax * .333 && spawn < 2 && Main.netMode != 1 && stage == 2)
             {
-                stage = 3;
+                stage2 = false;
+                stage3 = false;
+                //stage = 3;
                 npc.position.X = player.position.X;
                 npc.position.Y = player.position.Y;
             }
 
-            while (stage == 3)
+            while ((stage == 3) || (!stage2 && stage3))
             {
                 // Gets the Player and Target Vector
                 npc.TargetClosest(true);
@@ -755,7 +809,7 @@ namespace MoTools.NPCs.TheCelestial
                     //npc.ai[2] = 0;
                     fastSpeed = false;
                 }
-            }*/
+            }
 
             if (poof)
             {
@@ -808,7 +862,7 @@ namespace MoTools.NPCs.TheCelestial
             //MoToolsPlayer modPlayer = MoToolsPlayer.Get();
             {
                 //Mod spectraMod = ModLoader.GetMod("SpectraMod");
-                Mod exampleMod = ModLoader.GetMod("ExampleMod");
+                Mod exampleMod = ModLoader.GetMod("MoTools");
 
                 int piller = Main.rand.Next(1, 7);
 

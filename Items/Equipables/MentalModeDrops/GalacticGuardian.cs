@@ -1,0 +1,37 @@
+﻿using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using Microsoft.Xna.Framework;
+using MoTools.Rarities;
+
+namespace MoTools.Items.Equipables.MentalModeDrops
+{
+
+    public class GalacticGuardian : ModItem
+    {
+
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Galactic Eye");
+            Tooltip.SetDefault("Immune to contact damage from non-boss npcs and always kills non-boss npcs in 1 hit");
+        }
+
+        public override void SetDefaults()
+        {
+            item.width = 32;
+            item.height = 32;
+            item.value = 10000;
+            item.rare = ItemRarities.Mental;
+            item.accessory = true;
+
+        }
+        public override void UpdateEquip(Player player)
+        {
+            player.GetModPlayer<MoToolsPlayer>().ggEquip = true;
+        }
+
+
+    }
+}

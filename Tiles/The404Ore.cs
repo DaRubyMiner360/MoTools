@@ -30,5 +30,9 @@ namespace MoTools.Tiles
 			//mineResist = 4f;
 			//minPick = 200;
 		}
+		
+		public override void RandomUpdate(int i, int j) {
+			WorldGeneration.Spread("The 404 Realm", i, j);
+		}
 	}
 }

@@ -13,7 +13,7 @@ namespace MoTools.NPCs.Critters
 	/// <summary>
 	/// This file shows off a critter npc. The unique thing about critters is how you can catch them with a bug net.  
 	/// The important bits are: Main.npcCatchable, npc.catchItem, and item.makeNPC
-	/// We will also show off adding an item to an existing RecipeGroup (see ExampleMod.AddRecipeGroups)
+	/// We will also show off adding an item to an existing RecipeGroup (see MoTools.AddRecipeGroups)
 	/// </summary>
 	internal class RainbowCelestialNPC : ModNPC
 	{

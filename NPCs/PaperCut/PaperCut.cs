@@ -59,7 +59,7 @@ namespace MoTools.NPCs.PaperCut
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/PaperCut");
+            music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/PaperCut");
             bossBag = ModContent.ItemType<PaperCutTreasureBag>();
         }
 

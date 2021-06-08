@@ -15,7 +15,7 @@ namespace MoTools.Items.Placeable
 
 		public override void SetDefaults()
 		{
-			item.useStyle = 1;
+			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.useTurn = true;
 			item.useAnimation = 15;
 			item.useTime = 10;
@@ -34,6 +34,24 @@ namespace MoTools.Items.Placeable
 			recipe.AddIngredient(this, 5);
 			recipe.AddTile(mod, "ExtremeForge");
 			recipe.SetResult(mod, "The404Essence");
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this, 5);
+			recipe.AddTile(mod, "The404Forge");
+			recipe.SetResult(mod, "The404Essence", 2);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this, 1);
+			recipe.AddTile(mod, "ExtremeForge");
+			recipe.SetResult(ItemID.Hellstone, 2);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(this, 1);
+			recipe.AddTile(mod, "The404Forge");
+			recipe.SetResult(ItemID.Hellstone, 4);
 			recipe.AddRecipe();
 		}
 	}

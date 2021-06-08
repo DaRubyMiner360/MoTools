@@ -1,9 +1,10 @@
-displayName = Mo' Tools
+displayName = The Celestial Overtaking
 author = DaRubyMiner360
-version = 1.3.3.4
+version = 1.3.4.4
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Items\Weapons\Test.*
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, .git\*, I Support Banners\*, *.sln, *.md, .gitignore
 includePDB = false
 homepage = https://forums.terraria.org/index.php?threads/mo-tools.96059/
+modReferences = MoToolsSound@1.3.4.4
