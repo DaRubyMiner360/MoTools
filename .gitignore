@@ -1,2 +1,8 @@
 Items\Weapons\Test.cs
 Items\Weapons\Test.png
+.vs
+.vs/
+.vs/*
+obj
+obj/
+obj/*
