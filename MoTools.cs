@@ -435,13 +435,15 @@ namespace MoTools
             // Make sure your logic here goes from lowest priority to highest so your intended priority is maintained.
             if (Main.LocalPlayer.GetModPlayer<MoToolsPlayer>().ZoneThe404Realm)
             {
-                music = MoToolsSound.GetSoundSlot(SoundType.Music, "Sounds/Music/The404Realm");
+                if (MoToolsSound != null)
+                    music = MoToolsSound.GetSoundSlot(SoundType.Music, "Sounds/Music/The404Realm");
                 priority = MusicPriority.Event;
             }
 
             if (Main.LocalPlayer.HasBuff(BuffType("CarMount")) || Main.LocalPlayer.HasBuff(BuffType("CelestialCarMount")) || Main.LocalPlayer.HasBuff(BuffType("CelestialMount")))
             {
-                music = MoToolsSound.GetSoundSlot(SoundType.Music, "Sounds/Music/DriversTheme");
+                if (MoToolsSound != null)
+                    music = MoToolsSound.GetSoundSlot(SoundType.Music, "Sounds/Music/DriversTheme");
                 priority = MusicPriority.Environment;
             }
         }

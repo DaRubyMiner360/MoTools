@@ -59,7 +59,8 @@ namespace MoTools.NPCs.TheCelestial
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            //music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/TheCelestial");
+            //if (MoTools.MoToolsSound != null)
+            //    music = MoTools.MoToolsSound.GetSoundSlot(SoundType.Music, "Sounds/Music/TheCelestial");
             //bossBag = ModContent.ItemType<TheCelestialTreasureBag>();
 
             if (Main.expertMode == true)

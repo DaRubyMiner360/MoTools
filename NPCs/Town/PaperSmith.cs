@@ -173,8 +173,11 @@ namespace MoTools.NPCs.Town
 			  nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<PaperCutTreasureBag>());
 			 nextSlot++;
-			shop.item[nextSlot].SetDefaults(MoTools.MoToolsSound.ItemType("PaperCutMusicBox"));
-			 nextSlot++;
+			if (MoTools.MoToolsSound != null)
+            {
+				shop.item[nextSlot].SetDefaults(MoTools.MoToolsSound.ItemType("PaperCutMusicBox"));
+				nextSlot++;
+			}
 			shop.item[nextSlot].SetDefaults(ItemType<PaperAirplane>());
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<PaperWorkbench>());
@@ -198,50 +201,11 @@ namespace MoTools.NPCs.Town
 			shop.item[nextSlot].SetDefaults(ItemType<ReinforcedPaperBreastplate>());
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<ReinforcedPaperLeggings>());
-			nextSlot++;
-			/*shop.item[nextSlot].SetDefaults(ItemID.SlimeCrown);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.SnowGlobe);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.Abeemination);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.ClothierVoodooDoll);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.BloodySpine);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.PumpkinMoonMedallion);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.TruffleWorm);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.SolarTablet);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.TargetDummy);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.CelestialSigil);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemID.GoblinBattleStandard);
-			nextSlot++;
-			/*if (Main.moonPhase < 2) {
-				shop.item[nextSlot].SetDefaults(ItemType<ExampleSword>());
-				nextSlot++;
-			}
-			else if (Main.moonPhase < 4) {
-				shop.item[nextSlot].SetDefaults(ItemType<ExampleGun>());
-				nextSlot++;
-				shop.item[nextSlot].SetDefaults(ItemType<Items.Weapons.ExampleBullet>());
-				nextSlot++;
-			}
-			else if (Main.moonPhase < 6) {
-				shop.item[nextSlot].SetDefaults(ItemType<ExampleStaff>());
-				nextSlot++;
-			}
-			else {
-			}*/
 		}
 
 		public override void NPCLoot() {
 			Item.NewItem(npc.getRect(), ItemType<Paper>(), 75);
-			Item.NewItem(npc.getRect(), ItemType<The404Essence>(), 1);
+			//Item.NewItem(npc.getRect(), ItemType<The404Essence>(), 1);
 		}
 
 		public override void TownNPCAttackStrength(ref int damage, ref float knockback) {

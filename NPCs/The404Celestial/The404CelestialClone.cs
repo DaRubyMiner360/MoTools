@@ -59,7 +59,8 @@ namespace MoTools.NPCs.The404Celestial
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            //music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/The404Celestial");
+            //if (MoTools.MoToolsSound != null)
+            //    music = mod.GetSoundSlot(SoundType.Music, "../MoToolsSound/Sounds/Music/The404Celestial");
             //bossBag = ModContent.ItemType<The404CelestialTreasureBag>();
 
             if (Main.expertMode == true)
